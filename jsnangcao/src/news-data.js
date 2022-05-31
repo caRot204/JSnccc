@@ -1,24 +1,19 @@
-const tintuc = [
+const news = [
     {
         id: 1,
-        title: 'bai viet 1',
-        content: 'abc',
+        title: 'Bai viet 1',
+        content: 'Content bai viet 1'
     },
     {
         id: 2,
-        title: 'bai viet 2',
-        content: 'abc',
+        title: 'Bai viet 2',
+        content: 'Content bai viet 2'
     },
     {
         id: 3,
-        title: 'bai viet 3',
-        content: 'abc',
+        title: 'Bai viet 3',
+        content: 'Content bai viet 3'
     },
-    {
-        id: 4,
-        title: 'bai viet 4',
-        content: 'abc',
-    },
-]
-export default tintuc;
+];
 
+export default news;

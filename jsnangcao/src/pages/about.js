@@ -1,4 +1,5 @@
 const About = {
-    render: () => (`<div>About page</div>`)
-}
+    render: () => `<div>About</div>`
+};
+
 export default About;

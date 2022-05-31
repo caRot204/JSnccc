@@ -1,6 +1,5 @@
 const Home = {
-    render: () => (`<div>Home</div>`)
+    render: () => `<div>Home</div>`
+};
 
-
-}
 export default Home;
