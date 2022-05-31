@@ -10,7 +10,7 @@ const Student = {
         // 3.2 sử dụng axios đã được khởi tạo và sinh ra hàm getStudents
         const response = await getStudents();
         // const data = response.data;
-        const {data} = response;
+        const { data } = response;
 
         // 4. lần đợi fetch đầu tiên sẽ trả về obj Response
         // console.log('response',response1, response2.data);
@@ -19,15 +19,19 @@ const Student = {
         // console.log('students', students);
 
         return `<div>
-            ${
-                data.map((student) => (
-                    `<div>
+            ${data.map((student) => (
+            `<div>
                         <div>ID: ${student.id}</div>
                         <div>Name: ${student.name}</div>
-                        <div>MSV: ${student.msv}</div>
-                        <div>MSV: ${student.msv}</div>
+                        <div>MSV: ${student.MSV}</div>
+                        <div>
+                            <a href="/students/${student.id}">
+                                <button class="btn btn-info">Chi tiết</button>
+                            </a>
+                        </div>
+
                     </div>`
-                )).join('')
+        )).join('')
             }
         </div>`
     },
