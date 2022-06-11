@@ -1,4 +1,3 @@
-// thanh nav
 const Nav = {
     render: () =>
         `<nav>

@@ -5,26 +5,35 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import News from './pages/News';
-import Student from './pages/Student';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import studentsDetail from './pages/studentDetail';
+import Product from './pages/Product';
+import ProductDetail from './pages/ProductDetail';
+import ProductAdd from './pages/ProductAdd';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Khởi tạo đối tượng router
 const router = new Navigo('/', { linksSelector: 'a' });
 
-const render = async (content) => {
+const render = async (content, id) => {
+    // content sẽ là toàn bộ component
+    // cần thêm tham số vào hàm này để truyền id cho những phần detail
     document.querySelector('#header').innerHTML = Header.render();
-    document.querySelector('#content').innerHTML = await content;
+    document.querySelector('#content').innerHTML = await content.render(id);
     document.querySelector('#footer').innerHTML = Footer.render();
-}
+
+    // Sau khi content đã render xong thì afterRender mới được chạy
+    if (content.afterRender) {
+        content.afterRender();
+    }
+};
 
 router.on({
-    '/': () => render(Home.render()),
-    '/about': () => render(About.render()),
-    '/news': () => render(News.render()),
-    '/students': () => render(Student.render()),
-    '/students/:id': (data) => render(studentsDetail.render(data.data.id)),
+    '/': () => render(Home),
+    '/about': () => render(About),
+    '/news': () => render(News),
+    '/Products': () => render(Product),
+    '/Products/add': () => render(ProductAdd),
+    '/Products/detail/:id': (data) => render(ProductDetail, data.data.id),
 });
 router.resolve();
 
@@ -95,13 +104,13 @@ const countString = (string, callback) => { // mang countString2 truyền vào
 };
 const countString2 = (string) => console.log(string);
 
-const receiveUser = (user, callback, callback2) => {
-    // Lấy ra tên
-    const username = user.name;
-    // nhận tham số truyền vào là 1 trong 2 cách hiển thị tên
-    callback(username, callback2);
-    // countString(username);
-};
+// const receiveUser = (user, callback, callback2) => {
+//     // Lấy ra tên
+//     const username = user.name;
+//     // nhận tham số truyền vào là 1 trong 2 cách hiển thị tên
+//     callback(username, callback2);
+//     // countString(username);
+// };
 
 // receiveUser({name: 'tuannda3'}, countString); // gọi trước nhưng chậm 1 giây
 // receiveUser({name: 'tuannda4'}, countString2);
@@ -145,14 +154,14 @@ let a = [];
 // -- await phải nằm trong 1 hàm async thì mới dùng được
 // -- await phải là 1 hàm trả về đối tượng Promise
 
-const printA = async () => {
-    // gọi hàm setValueA để chờ nhận kết quả [1, 2, 3]
-    const result = await setValueA(); // giá trị được truyền vào trong resolve()
-    // chờ setValueA thực thi xong và trả về kq [1,2,3];
-    // thì mới chạy dòng tiếp theo là console.log
-    console.log('chờ result nhận kết quả rồi mới ra log này', result);
-    result.push(4);
-    console.log('sau khi thực hiện push ra kq này:', result);
-};
+// const printA = async () => {
+//     // gọi hàm setValueA để chờ nhận kết quả [1, 2, 3]
+//     const result = await setValueA(); // giá trị được truyền vào trong resolve()
+//     // chờ setValueA thực thi xong và trả về kq [1,2,3];
+//     // thì mới chạy dòng tiếp theo là console.log
+//     console.log('chờ result nhận kết quả rồi mới ra log này', result);
+//     result.push(4);
+//     console.log('sau khi thực hiện push ra kq này:', result);
+// };
 
-printA();
+// printA();
